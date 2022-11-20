@@ -5,4 +5,4 @@ In order to survive you need to collect items from around the map
 There are currently 3 mobs
 - Basic Slime
 - Speedy Slime
-- Grumoy Slime
+- Grumpy Slime
