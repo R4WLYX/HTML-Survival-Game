@@ -6,12 +6,16 @@ var player = {
     // Position
     x: 0, 
     y: 0,
+    zindex: 0,
 
     originX: 0,
     originY: 0,
 
     trueX: 0,
     trueY: 0,
+
+    middle: 0,
+    bottom: 0,
 
     // Size
     width: 120,
@@ -42,6 +46,11 @@ var player = {
         this.trueX = this.x + this.marginX;
         this.trueY = this.y + this.marginY;
 
+        this.middle = this.x + this.width/2;
+        this.bottom = this.y + this.height - this.marginY;
+
+        this.health = 160;
+
         this.animation.src = "animations/player.png";
     },
     Update: function(key, frame) {
@@ -61,6 +70,15 @@ var player = {
 
         this.trueX = this.x + this.marginX;
         this.trueY = this.y + this.marginY;
+
+        this.middle = this.x + this.width/2;
+        this.bottom = this.y + this.height - this.marginY;
+
+        if (this.health < 0) {
+            this.health = 0;
+        } else if (this.health > 160) {
+            this.health = 160;
+        }
     },
     Move: function(key, frame) {
         let speed;
@@ -172,10 +190,14 @@ var player = {
         }
 
         ctx.drawImage(this.animation, animationFrame*this.width, yOffset*this.height, this.width, this.width, this.x, this.y, this.width, this.height);
+    },
+    Damage: function(mob) {
+        if (mob.animationFrame == 7) {
+            if (checkCollision(this, mob)) {
+                this.health -= mob.damage;
+            }
+        }
     }
 }
-
-let CANVAS_WIDTH = 1000;
-let CANVAS_HEIGHT = 500;
 
 player.Init(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);

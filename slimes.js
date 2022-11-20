@@ -6,12 +6,16 @@ class slimes {
     // Position
     x = 0; 
     y = 0;
+    zIndex = 1;
 
     originX = 0;
     originY = 0;
 
     trueX = 0;
     trueY = 0;
+
+    middle = 0;
+    bottom = 0;
 
     // Size
     width = 120;
@@ -22,11 +26,19 @@ class slimes {
 
     // Stats
     health = 60;
+    damage = 7;
     mass = 30; // kg
     speed = { // m/s
         max: 1.25,
         current: 0
     };
+
+    // Player tracker
+    tracker = {
+        x: 0,
+        y: 0
+    };
+    counter = 0;
 
     // Animations
     animation = new Image();
@@ -37,8 +49,13 @@ class slimes {
 
     // Functions
     constructor(data) {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random()*CANVAS_WIDTH - this.marginX - 160;
+        this.y = Math.random()*CANVAS_HEIGHT - this.marginY - 160;
+
+        if ((this.x > CANVAS_WIDTH/2) - 240 || (this.x < CANVAS_WIDTH/2 + 240)) {
+            this.x = Math.random()*CANVAS_WIDTH*2 - this.marginX - 160;
+            this.y = Math.random()*CANVAS_HEIGHT*2 - this.marginY - 160;
+        }
 
         this.originX = this.x + this.width/2;
         this.originY = this.y + this.height;
@@ -46,10 +63,18 @@ class slimes {
         this.trueX = this.x + this.marginX;
         this.trueY = this.y + this.marginY;
 
+        this.middle = this.x + this.width/2 - 2;
+        this.bottom = this.y + this.height - this.marginY - 8;
+
+        this.tracker.x = player.originX + (Math.random()*10 - 5);
+        this.tracker.y = player.originY + (Math.random()*10 - 5);
+        this.counter = Math.floor(Math.random()*4 - 1);
+
         this.animation.src = "animations/slimes.png";
 
         this.health = data.health;
-        this.mass = data.mass;
+        this.damage = data.damage;
+        this.mass = data.mass + (Math.random() - 0.5)*1.25;
         this.speed.max = data.maxSpeed;
         this.frameOffset = Math.floor(Math.random()*7);
         this.interval = data.interval;
@@ -67,30 +92,42 @@ class slimes {
 
         this.trueX = this.x + this.marginX;
         this.trueY = this.y + this.marginY;
+
+        this.middle = this.x + this.width/2 - 2;
+        this.bottom = this.y + this.height - this.marginY - 8;
     };
     Move = function(frame) {
+        
+
         this.ApplyForce(7); 
         this.animationFrame = Math.floor(frame/this.interval) + this.frameOffset;
 
         if (this.animationFrame > 7) {
             this.animationFrame -= (8 * Math.floor(this.animationFrame/8));
+            this.counter++;
+            if (this.counter == 4) {
+                this.tracker.x = player.originX + (Math.random()*10 - 5);
+                this.tracker.y = player.originY + (Math.random()*10 - 5);
+    
+                this.counter = 0;
+            }
         }
         
         if (this.animationFrame > 3) {
             // Move Up
-            if (this.originY > player.originY) {
+            if (this.originY > this.tracker.y) {
                 this.y -= this.speed.current;
             }
             // Move Down
-            if (player.originY > this.originY) {
+            if (this.tracker.y > this.originY) {
                 this.y += this.speed.current;
             }
             // Move Right
-            if (player.originX > this.originX) {
+            if (this.tracker.x > this.originX) {
                 this.x += this.speed.current;
             }
             // Move Left
-            if (this.originX > player.originX) {
+            if (this.originX > this.tracker.x) {
                 this.x -= this.speed.current;
             }
         }
@@ -107,6 +144,8 @@ class slimes {
         }
     };
     Animate = function() {
+        ctx.globalAlpha = 0.95;
         ctx.drawImage(this.animation, this.animationFrame*this.width, this.yOffset*this.height, this.width, this.width, this.x, this.y, this.width, this.height);
+        ctx.globalAlpha = 1;
     }
 }

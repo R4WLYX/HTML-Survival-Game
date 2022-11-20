@@ -5,7 +5,7 @@ function checkKey(key) {
     return false;
 }
 
-function boxCollision(a, b) {
+function checkCollision(a, b) {
     return !(
         ((a.trueY + a.trueHeight) < (b.trueY)) ||
         (a.trueY > (b.trueY + b.trueHeight)) ||
