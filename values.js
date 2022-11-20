@@ -1,4 +1,4 @@
-var CANVAS_WIDTH = 1300;
-var CANVAS_HEIGHT = 640;
+var CANVAS_WIDTH = window. innerWidth;
+var CANVAS_HEIGHT = window. innerHeight;
 
 var pxm = 50;

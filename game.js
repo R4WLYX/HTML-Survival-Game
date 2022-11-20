@@ -1,6 +1,7 @@
 var cnvs = document.createElement("canvas");
 cnvs.width = CANVAS_WIDTH;
 cnvs.height = CANVAS_HEIGHT;
+cnvs.style.margin = "0";
 cnvs.style.background = "black";
 var ctx = cnvs.getContext("2d")
 document.body.appendChild(cnvs);
@@ -74,6 +75,8 @@ function reset(state) {
 
     switch (state) {
         case "death":
+            ctx.fillStyle = "black";
+            ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
             // Load death screen
             hud.death_screen.Load();
 
@@ -138,26 +141,26 @@ function update() {
     }
 
     // New wave
-    nextWave = frame % 800 == 0? true : false;
-    if (false) {
-        wave++;
+    // nextWave = frame % 800 == 0? true : false;
+    // if (nextWave) {
+    //     wave++;
 
-        player.health += 15.5;
+    //     player.health += 15.5;
 
-        for (let i = 0; i < basics.length + Math.floor(wave/3); i++) {
-            basics[i] = new slimes(basicData);
-        }
-        for (let i = 0; i < speedies.length + Math.floor(wave/7); i++) {
-            speedies[i] = new slimes(speedyData);
-        }
-        for (let i = 0; i < grumpies.length + Math.floor(wave/5); i++) {
-            grumpies[i] = new slimes(grumpyData);
-        }
+    //     for (let i = 0; i < basics.length + Math.floor(wave/3); i++) {
+    //         basics[i] = new slimes(basicData);
+    //     }
+    //     for (let i = 0; i < speedies.length + Math.floor(wave/7); i++) {
+    //         speedies[i] = new slimes(speedyData);
+    //     }
+    //     for (let i = 0; i < grumpies.length + Math.floor(wave/5); i++) {
+    //         grumpies[i] = new slimes(grumpyData);
+    //     }
 
-        nextWave = false;
-    }
+    //     nextWave = false;
+    // }
 
     frame++;
 }
 
-reset("death");
+start();
