@@ -102,6 +102,9 @@ function reset(state) {
 }
 
 function update() {
+    cnvs.width = CANVAS_WIDTH = window.innerWidth;
+    cnvs.height = CANVAS_HEIGHT = window.innerHeight;
+
     mainLoop = requestAnimationFrame(update);
     ctx.clearRect(0, 0, cnvs.width, cnvs.height);
 
