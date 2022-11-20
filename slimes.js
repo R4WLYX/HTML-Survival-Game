@@ -66,8 +66,8 @@ class slimes {
         this.middle = this.x + this.width/2 - 2;
         this.bottom = this.y + this.height - this.marginY - 8;
 
-        this.tracker.x = player.originX + (Math.random()*10 - 5);
-        this.tracker.y = player.originY + (Math.random()*10 - 5);
+        this.tracker.x = player.middle + (Math.random()*10 - 5);
+        this.tracker.y = player.bottom + (Math.random()*10 - 5);
         this.counter = Math.floor(Math.random()*4 - 1);
 
         this.animation.src = "animations/slimes.png";
@@ -106,8 +106,8 @@ class slimes {
             this.animationFrame -= (8 * Math.floor(this.animationFrame/8));
             this.counter++;
             if (this.counter == 4) {
-                this.tracker.x = player.originX + (Math.random()*10 - 5);
-                this.tracker.y = player.originY + (Math.random()*10 - 5);
+                this.tracker.x = player.middle + (Math.random()*10 - 5);
+                this.tracker.y = player.bottom + (Math.random()*10 - 5);
     
                 this.counter = 0;
             }
