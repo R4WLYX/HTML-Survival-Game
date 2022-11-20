@@ -1,5 +1,4 @@
 document.body.style.margin = "0";
-document.body.style.overflow = "hidden";
 var cnvs = document.createElement("canvas");
 cnvs.width = CANVAS_WIDTH;
 cnvs.height = CANVAS_HEIGHT;
@@ -7,6 +6,7 @@ cnvs.style.padding = "0";
 cnvs.style.background = "black";
 cnvs.style.alignSelf = "center";
 cnvs.style.justifySelf = "center";
+canvas.style.overflow = "hidden";
 var ctx = cnvs.getContext("2d")
 document.body.appendChild(cnvs);
 
