@@ -139,7 +139,7 @@ function update() {
 
     // New wave
     nextWave = frame % 800 == 0? true : false;
-    if (nextWave) {
+    if (false) {
         wave++;
 
         player.health += 15.5;
