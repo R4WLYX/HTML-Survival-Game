@@ -75,7 +75,7 @@ function reset(state) {
 
     switch (state) {
         case "death":
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "solid #ffffff";
             ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
             // Load death screen
             hud.death_screen.Load();
