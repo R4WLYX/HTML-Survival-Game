@@ -1,4 +1,4 @@
-document.body.style.marginRight = document.body.style.marginLeft = "0";
+document.body.style.margin = "0";
 var cnvs = document.createElement("canvas");
 cnvs.width = CANVAS_WIDTH;
 cnvs.height = CANVAS_HEIGHT;
