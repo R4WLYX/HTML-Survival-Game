@@ -1,8 +1,11 @@
 var cnvs = document.createElement("canvas");
 cnvs.width = CANVAS_WIDTH;
 cnvs.height = CANVAS_HEIGHT;
-cnvs.style.margin = "0";
 cnvs.style.background = "black";
+cnvs.style.marginRight = "auto";
+cnvs.style.marginLeft = "auto";
+cnvs.parentElement.style.textAlign = "center";
+cnvs.parentElement.style.width = "100%";
 var ctx = cnvs.getContext("2d")
 document.body.appendChild(cnvs);
 
@@ -75,9 +78,9 @@ function reset(state) {
 
     switch (state) {
         case "death":
-            ctx.fillStyle = "solid #ffffff";
-            ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
             // Load death screen
+            ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+            cnvs.style.background = "black";
             hud.death_screen.Load();
 
             // Reset game after 1.5 seconds
