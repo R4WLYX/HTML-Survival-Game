@@ -175,4 +175,7 @@ var player = {
     }
 }
 
-player.Init(canvas.width/2, canvas.height/2);
+let CANVAS_WIDTH = 1000;
+let CANVAS_HEIGHT = 500;
+
+player.Init(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
