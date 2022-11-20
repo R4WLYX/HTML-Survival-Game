@@ -1,8 +1,8 @@
-document.body.style.marginRight = "0";
-document.body.style.marginLeft = "0";
+document.body.style.marginRight = document.body.style.marginLeft = "0";
 var cnvs = document.createElement("canvas");
 cnvs.width = CANVAS_WIDTH;
 cnvs.height = CANVAS_HEIGHT;
+cnvs.style.padding = "0";
 cnvs.style.background = "black";
 cnvs.style.alignSelf = "center";
 cnvs.style.justifySelf = "center";

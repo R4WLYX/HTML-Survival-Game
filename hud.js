@@ -23,6 +23,9 @@ var hud = {
         sprite: new Image(),
 
         Load: function() {
+            this.marginX = CANVAS_WIDTH/2 - 296/2;
+            this.marginY = CANVAS_HEIGHT/2 - 56/2;
+            
             this.sprite.src = "hud/death_screen.png";
             ctx.drawImage(this.sprite, this.marginX, this.marginY, this.width, this.height);
         }
