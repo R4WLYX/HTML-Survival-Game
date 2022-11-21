@@ -8,9 +8,15 @@ var hud = {
 
         sprite: new Image(),
 
-        Load: function(state) {
+        Load: function(_health) {
+            let health = _health;
             this.sprite.src = "hud/health_bar.png";
-            ctx.drawImage(this.sprite, state*365, 0, 365, 90, this.marginX, this.marginY, this.width, this.height);
+            if (health == 0) {
+                ctx.drawImage(this.sprite, 0*365, 0, 365, 90, this.marginX, this.marginY, this.width, this.height);
+            } else {
+                health = Math.floor((health+9)/10);
+                ctx.drawImage(this.sprite, health*365, 0, 365, 90, this.marginX, this.marginY, this.width, this.height);
+            }
         }
     },
     death_screen: {

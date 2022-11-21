@@ -18,7 +18,7 @@ let nextWave = false;
 let wave = 0;
 
 let basics = [];
-let basicCount = 8;
+let basicCount = 8; // 8
 let basicData = {
     health: 60,
     damage: 1,
@@ -29,7 +29,7 @@ let basicData = {
 };
 
 let speedies = [];
-let speedyCount = 5;
+let speedyCount = 5; // 5
 let speedyData = {
     health: 40,
     damage: 0.5,
@@ -40,7 +40,7 @@ let speedyData = {
 };
 
 let grumpies = [];
-let grumpyCount = 3;
+let grumpyCount = 6; // 3
 let grumpyData = {
     health: 75,
     damage: 1.4,
@@ -58,6 +58,7 @@ addEventListener("keyup", (e) => {
 });
 
 function start() {
+    hud.death_screen.Load();
     cnvs.style.background = "grey";
 
     frame = 1;
@@ -143,7 +144,7 @@ function update() {
     }
 
     // Render HUD
-    hud.health_bar.Load(Math.floor(player.health/10));
+    hud.health_bar.Load(player.health);
 
     // Check if player died
     if (player.health <= 0) {

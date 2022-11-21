@@ -28,7 +28,7 @@ var player = {
     health: 160,
     mass: 60, // kg
     speed: { // m/s
-        max: 7.2, 
+        max: 6.6, 
         current: 0
     },
 
