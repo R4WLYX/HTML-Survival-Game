@@ -6,7 +6,7 @@ var player = {
     // Position
     x: 0, 
     y: 0,
-    zindex: 0,
+    zindex: 1,
 
     originX: 0,
     originY: 0,
@@ -28,7 +28,7 @@ var player = {
     health: 160,
     mass: 60, // kg
     speed: { // m/s
-        max: 5.5, 
+        max: 7.2, 
         current: 0
     },
 
@@ -88,8 +88,7 @@ var player = {
         
         // Move Up
         if ((key[38] || key[87]) && !(key[40] || key[83])) {
-            this.y -= speed;
-            
+            if (checkOutOfBounds(this)) {this.y -= speed;}
             if ((key[39] || key[68]) && !(key[37] || key[65])) {
                 this.Animate(frame, "run-right");
             } else if ((key[37] || key[65]) && !(key[39] || key[68])) {
@@ -109,8 +108,7 @@ var player = {
 
         // Move Down
         if ((key[40] || key[83]) && !(key[38] || key[87])) {
-            this.y += speed;
-            
+            if (checkOutOfBounds(this)) {this.y += speed;}
             if ((key[39] || key[68]) && !(key[37] || key[65])) {
                 this.Animate(frame, "run-right");
             } else if ((key[37] || key[65]) && !(key[39] || key[68])) {
@@ -130,18 +128,16 @@ var player = {
 
         // Move Right
         if ((key[39] || key[68]) && !(key[37] || key[65])) {
-            this.x += speed;
+            if (checkOutOfBounds(this)) {this.x += speed;}
             this.Animate(frame, "run-right");
-
         } else if ((key[39] || key[68]) && (key[37] || key[65]) && !(key[38] || key[87]) && !(key[40] || key[83])) {
             this.Animate(frame, "idle")
         }
 
         // Move Left
         if ((key[37] || key[65]) && !(key[39] || key[68])) {
-            this.x -= speed;
+            if (checkOutOfBounds(this)) {this.x -= speed;}
             this.Animate(frame, "run-left");
-
         } else if ((key[37] || key[65]) && (key[39] || key[68]) && !(key[38] || key[87]) && !(key[40] || key[83])) {
             this.Animate(frame, "idle")
         }

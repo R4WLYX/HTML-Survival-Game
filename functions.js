@@ -6,10 +6,30 @@ function checkKey(key) {
 }
 
 function checkCollision(a, b) {
-    return !(
-        ((a.trueY + a.trueHeight) < (b.trueY)) ||
-        (a.trueY > (b.trueY + b.trueHeight)) ||
-        ((a.trueX + a.trueWidth) < b.trueX) ||
-        (a.trueX > (b.trueX + b.trueWidth))
+    if (!Array.isArray(b)) {
+        return !(
+            ((a.trueY + a.trueHeight) < (b.trueY)) ||
+            (a.trueY > (b.trueY + b.trueHeight)) ||
+            ((a.trueX + a.trueWidth) < b.trueX) ||
+            (a.trueX > (b.trueX + b.trueWidth))
+        );
+    } else {
+        for (let i = 0; i < b.length; i++) {
+            return !(
+                ((a.trueY + a.trueHeight) < (b[i].trueY)) ||
+                (a.trueY > (b[i].trueY + b[i].trueHeight)) ||
+                ((a.trueX + a.trueWidth) < b[i].trueX) ||
+                (a.trueX > (b[i].trueX + b[i].trueWidth))
+            );
+        }
+    }
+}
+
+function checkOutOfBounds(a) {
+    return (
+        (a.trueY > 0) ||
+        ((a.trueY + a.trueHeight) < CANVAS_HEIGHT) ||
+        (a.trueX > 0) ||
+        ((a.trueX + a.trueWidth) > CANVAS_WIDTH)
     );
 }

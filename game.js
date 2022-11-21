@@ -29,7 +29,7 @@ let basicData = {
 };
 
 let speedies = [];
-let speedyCount = 4;
+let speedyCount = 5;
 let speedyData = {
     health: 40,
     damage: 0.5,
@@ -40,7 +40,7 @@ let speedyData = {
 };
 
 let grumpies = [];
-let grumpyCount = 6
+let grumpyCount = 3;
 let grumpyData = {
     health: 75,
     damage: 1.4,

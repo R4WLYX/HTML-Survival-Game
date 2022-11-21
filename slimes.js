@@ -6,7 +6,7 @@ class slimes {
     // Position
     x = 0; 
     y = 0;
-    zIndex = 1;
+    zIndex = 10;
 
     originX = 0;
     originY = 0;
@@ -67,7 +67,7 @@ class slimes {
         this.bottom = this.y + this.height - this.marginY - 8;
 
         this.tracker.x = player.originX + (Math.random()*10 - 5);
-        this.tracker.y = player.originY + (Math.random()*10 - 5) - this.trueHeight/2;
+        this.tracker.y = player.originY + (Math.random()*10 - 5) + this.trueHeight/2;
         this.counter = Math.floor(Math.random()*4 - 1);
 
         this.animation.src = "animations/slimes.png";
@@ -97,8 +97,6 @@ class slimes {
         this.bottom = this.y + this.height - this.marginY - 8;
     };
     Move = function(frame) {
-        
-
         this.ApplyForce(7); 
         this.animationFrame = Math.floor(frame/this.interval) + this.frameOffset;
 
@@ -107,7 +105,7 @@ class slimes {
             this.counter++;
             if (this.counter == 4) {
                 this.tracker.x = player.originX + (Math.random()*10 - 5);
-                this.tracker.y = player.originY + (Math.random()*10 - 5) - this.trueHeight/2;
+                this.tracker.y = player.originY + (Math.random()*10 - 5) + this.trueHeight/2;
     
                 this.counter = 0;
             }
