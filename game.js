@@ -18,6 +18,7 @@ let nextWave = false;
 let wave = 0;
 
 let basics = [];
+let basicCount = 8;
 let basicData = {
     health: 60,
     damage: 1,
@@ -28,6 +29,7 @@ let basicData = {
 };
 
 let speedies = [];
+let speedyCount = 4;
 let speedyData = {
     health: 40,
     damage: 0.5,
@@ -38,6 +40,7 @@ let speedyData = {
 };
 
 let grumpies = [];
+let grumpyCount = 6
 let grumpyData = {
     health: 75,
     damage: 1.4,
@@ -59,13 +62,13 @@ function start() {
 
     frame = 1;
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < basicCount; i++) {
         basics[i] = new slimes(basicData);
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < speedyCount; i++) {
         speedies[i] = new slimes(speedyData);
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < grumpyCount; i++) {
         grumpies[i] = new slimes(grumpyData);
     }
 
