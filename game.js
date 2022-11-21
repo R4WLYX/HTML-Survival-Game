@@ -18,7 +18,7 @@ let nextWave = false;
 let wave = 0;
 
 let basics = [];
-let basicCount = 8; // 8
+let basicCount = 3;
 let basicData = {
     health: 60,
     damage: 1,
@@ -29,7 +29,7 @@ let basicData = {
 };
 
 let speedies = [];
-let speedyCount = 5; // 5
+let speedyCount = 1;
 let speedyData = {
     health: 40,
     damage: 0.5,
@@ -40,7 +40,7 @@ let speedyData = {
 };
 
 let grumpies = [];
-let grumpyCount = 6; // 3
+let grumpyCount = 2;
 let grumpyData = {
     health: 75,
     damage: 1.4,
@@ -94,16 +94,26 @@ function reset(state) {
                 start();
             }, 1500);
             break;
-        case "new_wave":
+        case "next_wave":
             // Load next wave screen
-            
-            break;       
+            ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+            cnvs.style.background = "black";
+
+            // Add slimes
+            basicCount += Math.floor(wave/3);
+            speedyCount += Math.floor(wave/7);
+            grumpyCount += Math.floor(wave/5);
+
+            // Reset game after 1.5 seconds
+            setTimeout(() => {
+                player.x = CANVAS_WIDTH/2; 
+                player.y = CANVAS_HEIGHT/2;
+                start();
+            }, 1500);
+            break;     
         default:
             break;
     }
-        
-
-    
 }
 
 function update() {
@@ -152,24 +162,16 @@ function update() {
     }
 
     // New wave
-    // nextWave = frame % 800 == 0? true : false;
-    // if (nextWave) {
-    //     wave++;
+    nextWave = frame % 600 == 0? true : false;
+    if (nextWave) {
+        wave++;
 
-    //     player.health += 15.5;
+        player.health += 2.5;
 
-    //     for (let i = 0; i < basics.length + Math.floor(wave/3); i++) {
-    //         basics[i] = new slimes(basicData);
-    //     }
-    //     for (let i = 0; i < speedies.length + Math.floor(wave/7); i++) {
-    //         speedies[i] = new slimes(speedyData);
-    //     }
-    //     for (let i = 0; i < grumpies.length + Math.floor(wave/5); i++) {
-    //         grumpies[i] = new slimes(grumpyData);
-    //     }
+        reset("next_wave");
 
-    //     nextWave = false;
-    // }
+        nextWave = false;
+    }
 
     frame++;
 }

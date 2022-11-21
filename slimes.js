@@ -49,12 +49,11 @@ class slimes {
 
     // Functions
     constructor(data) {
-        this.x = Math.random()*CANVAS_WIDTH - this.marginX - 160;
-        this.y = Math.random()*CANVAS_HEIGHT - this.marginY - 160;
+        this.x = Math.random()*(CANVAS_WIDTH - 60) - this.marginX + 60;
+        this.y = Math.random()*(CANVAS_HEIGHT - 60) - this.marginY + 60;
 
-        if ((this.x > CANVAS_WIDTH/2) - 240 || (this.x < CANVAS_WIDTH/2 + 240)) {
-            this.x = Math.random()*CANVAS_WIDTH*2 - this.marginX - 160;
-            this.y = Math.random()*CANVAS_HEIGHT*2 - this.marginY - 160;
+        while (checkCollision(this, player)) {
+            this.x = Math.random()*(CANVAS_WIDTH - 60) - this.marginX + 60;
         }
 
         this.originX = this.x + this.width/2;
