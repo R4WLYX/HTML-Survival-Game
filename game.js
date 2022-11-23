@@ -124,9 +124,9 @@ function reset(state) {
             hud.score.Init()
 
             // Add slimes
-            basicCount += Math.floor(wave/3);
-            speedyCount += Math.floor(wave/7);
-            grumpyCount += Math.floor(wave/5);
+            basicCount += Math.floor(wave/1);
+            speedyCount += Math.floor(wave/5);
+            grumpyCount += Math.floor(wave/3);
 
             // Heal Player
             player.health += 1.5;
@@ -182,7 +182,7 @@ function update() {
     }
 
     // New wave
-    nextWave = frame % 1000 == 0? true : false;
+    nextWave = frame % 800 == 0? true : false;
     if (nextWave) {
         wave++;
         reset("next_wave");
