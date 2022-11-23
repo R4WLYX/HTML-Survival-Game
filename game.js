@@ -80,7 +80,7 @@ function start() {
     }
 
     entities = [];
-    
+
     entities.push(player);
     for (let i = 0; i < basics.length; i++) {
         entities.push(basics[i]);
@@ -166,9 +166,9 @@ function update() {
     // Render Entites
     for (let i = 0; i < entities.length; i++) {
         entities[i].Update(frame);
-        entities.sort(function(a, b){return (a.bottom - 20) - (b.bottom - 20)});
     }
-
+    entities.sort(function(a, b){return (a.bottom - 20) - (b.bottom - 20)});
+    
     // Render HUD
     hud.health_bar.Load(player.health);
     hud.score.Load(player.score);
