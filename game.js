@@ -124,15 +124,15 @@ function reset(state) {
             hud.score.Init()
 
             // Add slimes
-            basicCount += Math.floor(wave/1);
-            speedyCount += Math.floor(wave/5);
-            grumpyCount += Math.floor(wave/3);
+            if (wave % 4 == 0) { basics.push(new slimes(basicData)); basicCount++; }
+            if (wave % 7 == 0) { basics.push(new slimes(speedyData)); speedyCount++; }
+            if (wave % 6 == 0) { basics.push(new slimes(grumpyData)); grumpyCount++; }
 
             // Heal Player
-            player.health += 1.5;
+            player.health += 2.5;
 
             // Add score
-            player.score += 1.5 + Math.floor(player.health/100 + 0.5) * (2.5 + wave/50);
+            player.score += 1.5 + Math.floor(player.health/100 + 0.5) * (1.5 + wave/50);
 
             // Reset game after 1.5 seconds
             setTimeout(() => {
@@ -182,8 +182,9 @@ function update() {
     }
 
     // New wave
-    nextWave = frame % 800 == 0? true : false;
+    nextWave = frame % 200 == 0? true : false;
     if (nextWave) {
+        frame++;
         wave++;
         reset("next_wave");
         nextWave = false;

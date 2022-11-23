@@ -53,7 +53,7 @@ var hud = {
             ctx.drawImage(this.digits.sprite, Number(String(score)[1])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*2, this.marginY, 25, 35);
             ctx.drawImage(this.digits.sprite, Number(String(score)[2])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*3 + this.digits.width, this.marginY, 25, 35);
             ctx.drawImage(this.digits.sprite, Number(String(score)[3])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*4 + this.digits.width*2, this.marginY, 25, 35);
-            ctx.drawImage(this.digits.sprite, Number(String(score)[3])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*5 + this.digits.width*3, this.marginY, 25, 35);
+            ctx.drawImage(this.digits.sprite, Number(String(score)[4])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*5 + this.digits.width*3, this.marginY, 25, 35);
         }
     },
     death_screen: {
