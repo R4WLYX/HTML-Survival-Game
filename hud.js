@@ -37,6 +37,10 @@ var hud = {
             sprite: new Image(),
         },
 
+        Init: function() {
+            this.marginX = CANVAS_WIDTH - this.width - this.marginX - this.digits.marginX*4 - 27*4;
+        },
+
         Load: function(score) {
             // Score:
             this.sprite.src = "hud/score.png";
@@ -70,5 +74,3 @@ var hud = {
         }
     }
 }
-
-hud.score.marginX = CANVAS_WIDTH - hud.score.width - hud.score.marginX - hud.score.digits.marginX*4 - 27*4;

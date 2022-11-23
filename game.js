@@ -61,6 +61,7 @@ addEventListener("keyup", (e) => {
 
 function start() {
     hud.death_screen.Load();
+    hud.score.Init()
     cnvs.style.background = "grey";
 
     frame = 1;
@@ -108,6 +109,7 @@ function reset(state) {
             ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
             cnvs.style.background = "black";
             hud.death_screen.Load();
+            hud.score.Init()
 
             // Reset game after 1.5 seconds
             setTimeout(() => {
@@ -119,6 +121,7 @@ function reset(state) {
             // Load next wave screen
             ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
             cnvs.style.background = "black";
+            hud.score.Init()
 
             // Add slimes
             basicCount += Math.floor(wave/3);
@@ -129,7 +132,7 @@ function reset(state) {
             player.health += 1.5;
 
             // Add score
-            player.score += Math.floor(player.health/100 + 0.5) * (2.5 + wave/50);
+            player.score += 1.5 + Math.floor(player.health/100 + 0.5) * (2.5 + wave/50);
 
             // Reset game after 1.5 seconds
             setTimeout(() => {
