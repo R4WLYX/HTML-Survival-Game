@@ -27,7 +27,7 @@ var player = {
     health: 160,
     mass: 60, // kg
     speed: { // m/s
-        max: 6.9, 
+        max: 7.2, 
         current: 0
     },
     score: 10000,
@@ -56,14 +56,29 @@ var player = {
     },
     Update: function(frame) {
         // Friction
-        player.ApplyForce(-7.5);
+        this.ApplyForce(-7.5);
 
         // Check if player is moving
-        if (checkKey(keyPressed)) {
-            player.Move(keyPressed, frame);
+        if (checkKey(keyPressed) && !(this.trueY < 0 || this.trueX < 0 || this.trueY + this.trueHeight > CANVAS_HEIGHT || this.trueX + this.trueWidth > CANVAS_WIDTH)) {
+            this.Move(keyPressed, frame);
         } else {
             // Idle
-            player.Animate(frame, "idle");
+            if (!(this.trueY < 0 || this.trueX < 0 || this.trueY + this.trueHeight > CANVAS_HEIGHT || this.trueX + this.trueWidth > CANVAS_WIDTH)) {
+                this.Animate(frame, "idle");
+            }
+
+            if (this.trueY < 0) {
+                this.y = this.speed.max - this.marginY;
+            }
+            if (this.trueX < 0) {
+                this.x = this.speed.max - this.marginX;
+            }
+            if (this.trueY + this.trueHeight > CANVAS_HEIGHT) {
+                this.y = CANVAS_HEIGHT - this.speed.max - this.trueHeight - this.marginY;
+            }
+            if (this.trueX + this.trueWidth > CANVAS_WIDTH) {
+                this.x = CANVAS_WIDTH - this.speed.max - this.trueWidth - this.marginX;
+            }
         }
 
         this.originX = this.x + this.width/2;
@@ -167,11 +182,11 @@ var player = {
                 yOffset = 1;
                 break;
             case "run-right":
-                interval = 2.5;
+                interval = 2.25;
                 yOffset = 2;
                 break;
             case "run-left":
-                interval = 2.5;
+                interval = 2.25;
                 yOffset = 3;
                 break;
             default:

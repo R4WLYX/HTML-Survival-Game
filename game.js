@@ -182,7 +182,7 @@ function update() {
     }
 
     // New wave
-    nextWave = frame % 200 == 0? true : false;
+    nextWave = frame % 800 == 0? true : false;
     if (nextWave) {
         frame++;
         wave++;
