@@ -17,6 +17,8 @@ let mainLoop = null;
 let nextWave = false;
 let wave = 0;
 
+let entities = [];
+
 let basics = [];
 let basicCount = 3;
 let basicData = {
@@ -63,6 +65,10 @@ function start() {
 
     frame = 1;
 
+    basicCount = 3;
+    speedyCount = 1;
+    grumpyCount = 2;
+
     for (let i = 0; i < basicCount; i++) {
         basics[i] = new slimes(basicData);
     }
@@ -72,6 +78,21 @@ function start() {
     for (let i = 0; i < grumpyCount; i++) {
         grumpies[i] = new slimes(grumpyData);
     }
+
+    entities = [];
+    
+    entities.push(player);
+    for (let i = 0; i < basics.length; i++) {
+        entities.push(basics[i]);
+    }
+    for (let i = 0; i < speedies.length; i++) {
+        entities.push(speedies[i]);
+    }
+    for (let i = 0; i < grumpies.length; i++) {
+        entities.push(grumpies[i]);
+    }
+
+    entities.sort(function(a, b){return (a.bottom - 20) - (b.bottom - 20)});
 
     update();
 }
@@ -104,6 +125,12 @@ function reset(state) {
             speedyCount += Math.floor(wave/7);
             grumpyCount += Math.floor(wave/5);
 
+            // Heal Player
+            player.health += 1.5;
+
+            // Add score
+            player.score += Math.floor(player.health/160 + 0.5) * (1.5 + wave/100);
+
             // Reset game after 1.5 seconds
             setTimeout(() => {
                 player.x = CANVAS_WIDTH/2; 
@@ -134,27 +161,17 @@ function update() {
     }
     for (let i = 0; i < grumpies.length; i++) {
         shadow.Draw(grumpies[i]);
-    }   
+    } 
 
-    // Render player
-    player.Update(keyPressed, frame);
-
-    // Render entities
-    for (let i = 0; i < basics.length; i++) {
-        basics[i].Update(frame);
-        player.Damage(basics[i]);
-    }
-    for (let i = 0; i < speedies.length; i++) {
-        speedies[i].Update(frame);
-        player.Damage(speedies[i]);
-    }
-    for (let i = 0; i < grumpies.length; i++) {
-        grumpies[i].Update(frame);
-        player.Damage(grumpies[i]);
+    // Render Entites
+    for (let i = 0; i < entities.length; i++) {
+        entities[i].Update(frame);
+        entities.sort(function(a, b){return (a.bottom - 20) - (b.bottom - 20)});
     }
 
     // Render HUD
     hud.health_bar.Load(player.health);
+    hud.score.Load(player.score);
 
     // Check if player died
     if (player.health <= 0) {
@@ -162,12 +179,9 @@ function update() {
     }
 
     // New wave
-    nextWave = frame % 600 == 0? true : false;
+    nextWave = frame % 1000 == 0? true : false;
     if (nextWave) {
         wave++;
-
-        player.health += 2.5;
-
         reset("next_wave");
 
         nextWave = false;

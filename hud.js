@@ -19,6 +19,38 @@ var hud = {
             }
         }
     },
+    score: {
+        marginX: 5,
+        marginY: 5,
+        
+        width: 145,
+        height: 35,
+
+        sprite: new Image(),
+        
+        digits: {
+            marginX: -5,
+
+            width: 25,
+            height: 35,
+
+            sprite: new Image(),
+        },
+
+        Load: function(score) {
+            // Score:
+            this.sprite.src = "hud/score.png";
+
+            ctx.drawImage(this.sprite, this.marginX, this.marginY, this.width, this.height);
+
+            // Digits
+            this.digits.sprite.src = "hud/digits.png";
+
+            ctx.drawImage(this.digits.sprite, Number(String(score)[1])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*2, this.marginY, 25, 35);
+            ctx.drawImage(this.digits.sprite, Number(String(score)[2])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*3 + this.digits.width, this.marginY, 25, 35);
+            ctx.drawImage(this.digits.sprite, Number(String(score)[3])*this.digits.width, 0, this.digits.width, this.digits.height, this.marginX + this.width + this.digits.marginX*4 + this.digits.width*2, this.marginY, 25, 35);
+        }
+    },
     death_screen: {
         marginX: CANVAS_WIDTH/2 - 296/2,
         marginY: CANVAS_HEIGHT/2 - 56/2,
@@ -31,9 +63,11 @@ var hud = {
         Load: function() {
             this.marginX = CANVAS_WIDTH/2 - 296/2;
             this.marginY = CANVAS_HEIGHT/2 - 56/2;
-            
             this.sprite.src = "hud/death_screen.png";
+
             ctx.drawImage(this.sprite, this.marginX, this.marginY, this.width, this.height);
         }
     }
 }
+
+hud.score.marginX = CANVAS_WIDTH - hud.score.width - hud.score.marginX - hud.score.digits.marginX*3 - 27*3;

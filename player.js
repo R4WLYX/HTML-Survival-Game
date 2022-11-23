@@ -6,7 +6,6 @@ var player = {
     // Position
     x: 0, 
     y: 0,
-    zindex: 1,
 
     originX: 0,
     originY: 0,
@@ -28,9 +27,10 @@ var player = {
     health: 160,
     mass: 60, // kg
     speed: { // m/s
-        max: 6.2, 
+        max: 6.9, 
         current: 0
     },
+    score: 1000,
 
     // Animations
     animation: new Image(),
@@ -53,13 +53,13 @@ var player = {
 
         this.animation.src = "animations/player.png";
     },
-    Update: function(key, frame) {
+    Update: function(frame) {
         // Friction
         player.ApplyForce(-7.5);
 
         // Check if player is moving
-        if (checkKey(key)) {
-            player.Move(key, frame);
+        if (checkKey(keyPressed)) {
+            player.Move(keyPressed, frame);
         } else {
             // Idle
             player.Animate(frame, "idle");

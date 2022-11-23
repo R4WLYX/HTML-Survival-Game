@@ -6,7 +6,6 @@ var shadow = {
     // Position
     x: 0, 
     y: 0,
-    zIndex: 0,
 
     originX: 0,
     originY: 0,
@@ -35,4 +34,3 @@ shadow.originX = shadow.x + shadow.width/2;
 shadow.originY = shadow.y + shadow.height/2;
 
 shadow.sprite.src = "sprites/shadow.png";
-shadow.sprite.style.zIndex = shadow.zIndex;

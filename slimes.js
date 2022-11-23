@@ -6,7 +6,6 @@ class slimes {
     // Position
     x = 0; 
     y = 0;
-    zIndex = 10;
 
     originX = 0;
     originY = 0;
@@ -85,6 +84,9 @@ class slimes {
         
         // Move mob
         this.Move(frame);
+
+        // Damage player
+        player.Damage(this);
 
         this.originX = this.x + this.width/2;
         this.originY = this.y + this.height/2;
