@@ -129,7 +129,7 @@ function reset(state) {
             player.health += 1.5;
 
             // Add score
-            player.score += Math.floor(player.health/160 + 0.5) * (1.5 + wave/100);
+            player.score += Math.floor(player.health/100 + 0.5) * (2.5 + wave/50);
 
             // Reset game after 1.5 seconds
             setTimeout(() => {
@@ -183,7 +183,6 @@ function update() {
     if (nextWave) {
         wave++;
         reset("next_wave");
-
         nextWave = false;
     }
 

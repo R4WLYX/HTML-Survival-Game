@@ -30,7 +30,7 @@ var player = {
         max: 6.9, 
         current: 0
     },
-    score: 1000,
+    score: 10000,
 
     // Animations
     animation: new Image(),
@@ -50,6 +50,7 @@ var player = {
         this.bottom = this.y + this.height - this.marginY;
 
         this.health = 160;
+        this.score = 10000;
 
         this.animation.src = "animations/player.png";
     },
