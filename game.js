@@ -25,8 +25,8 @@ let basicData = {
     health: 60,
     damage: 1,
     mass: 30,
-    maxSpeed: 1.75,
-    interval: 6,
+    maxSpeed: 2,
+    interval: 5.5,
     yOffset: 0
 };
 
@@ -36,8 +36,8 @@ let speedyData = {
     health: 40,
     damage: 0.5,
     mass: 27,
-    maxSpeed: 2.2,
-    interval: 5,
+    maxSpeed: 3,
+    interval: 4.5,
     yOffset: 1
 };
 
@@ -70,14 +70,26 @@ function start() {
     speedyCount = 1;
     grumpyCount = 2;
 
-    for (let i = 0; i < basicCount; i++) {
-        basics[i] = new slimes(basicData);
-    }
-    for (let i = 0; i < speedyCount; i++) {
-        speedies[i] = new slimes(speedyData);
-    }
-    for (let i = 0; i < grumpyCount; i++) {
-        grumpies[i] = new slimes(grumpyData);
+    if (wave == 0) {
+        for (let i = 0; i < basicCount; i++) {
+            basics[i] = new slimes(basicData);
+        }
+        for (let i = 0; i < speedyCount; i++) {
+            speedies[i] = new slimes(speedyData);
+        }
+        for (let i = 0; i < grumpyCount; i++) {
+            grumpies[i] = new slimes(grumpyData);
+        }
+    } else {
+        for (let i = 0; i < basics.length; i++) {
+            basics[i] = new slimes(basicData);
+        }
+        for (let i = 0; i < speedies.length; i++) {
+            speedies[i] = new slimes(speedyData);
+        }
+        for (let i = 0; i < grumpies.length; i++) {
+            grumpies[i] = new slimes(grumpyData);
+        }
     }
 
     entities = [];
@@ -111,14 +123,17 @@ function reset(state) {
             hud.death_screen.Load();
             hud.score.Init()
 
+            basics = [];
+            basicCount = 3;
+            speedies = [];
+            speedyCount = 1;
+            grumpies = [];
+            grumpyCount = 2;
+
+            wave = 0;
+
             // Reset game after 1.5 seconds
             setTimeout(() => {
-                basics = []
-                basicCount = 3;
-                speedies = []
-                speedyCount = 1;
-                grumpies = []
-                grumpyCount = 2;
                 player.Init(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
                 start();
             }, 1500);
@@ -130,13 +145,9 @@ function reset(state) {
             hud.score.Init()
 
             // Add slimes
-            if (wave % 4 == 0) { basics.push(new slimes(basicData)); basicCount++; }
-            if (wave % 7 == 0) { speedy.push(new slimes(speedyData)); speedyCount++; }
-            if (wave % 6 == 0) { grumpy.push(new slimes(grumpyData)); grumpyCount++; }
-
-            console.log(basicCount);
-            console.log(speedyCount);
-            console.log(basicCount);
+            if (wave % 2 == 0) { basics.push(new slimes(basicData)); basicCount++; }
+            if (wave % 4 == 0) { speedies.push(new slimes(speedyData)); speedyCount++; }
+            if (wave % 3 == 0) { grumpies.push(new slimes(grumpyData)); grumpyCount++; }
 
             // Heal Player
             player.health += 2.5;
