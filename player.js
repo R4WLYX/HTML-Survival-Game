@@ -68,16 +68,16 @@ var player = {
             }
 
             if (this.trueY < 0) {
-                this.y = this.speed.max - this.marginY;
+                this.y = 0 - this.marginY;
             }
             if (this.trueX < 0) {
-                this.x = this.speed.max - this.marginX;
+                this.x = 0 - this.marginX;
             }
             if (this.trueY + this.trueHeight > CANVAS_HEIGHT) {
-                this.y = CANVAS_HEIGHT - this.speed.max - this.trueHeight - this.marginY;
+                this.y = CANVAS_HEIGHT - this.trueHeight - this.marginY;
             }
             if (this.trueX + this.trueWidth > CANVAS_WIDTH) {
-                this.x = CANVAS_WIDTH - this.speed.max - this.trueWidth - this.marginX;
+                this.x = CANVAS_WIDTH - this.trueWidth - this.marginX;
             }
         }
 

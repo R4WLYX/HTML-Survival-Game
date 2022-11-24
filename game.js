@@ -131,8 +131,12 @@ function reset(state) {
 
             // Add slimes
             if (wave % 4 == 0) { basics.push(new slimes(basicData)); basicCount++; }
-            if (wave % 7 == 0) { basics.push(new slimes(speedyData)); speedyCount++; }
-            if (wave % 6 == 0) { basics.push(new slimes(grumpyData)); grumpyCount++; }
+            if (wave % 7 == 0) { speedy.push(new slimes(speedyData)); speedyCount++; }
+            if (wave % 6 == 0) { grumpy.push(new slimes(grumpyData)); grumpyCount++; }
+
+            console.log(basicCount);
+            console.log(speedyCount);
+            console.log(basicCount);
 
             // Heal Player
             player.health += 2.5;
