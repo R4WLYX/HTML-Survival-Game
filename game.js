@@ -15,7 +15,7 @@ let frame = 1;
 let mainLoop = null;
 
 let nextWave = false;
-let wave = 0;
+let wave = 1;
 
 let entities = [];
 
@@ -70,7 +70,7 @@ function start() {
     speedyCount = 1;
     grumpyCount = 2;
 
-    if (wave == 0) {
+    if (wave == 1) {
         for (let i = 0; i < basicCount; i++) {
             basics[i] = new slimes(basicData);
         }
@@ -130,7 +130,7 @@ function reset(state) {
             grumpies = [];
             grumpyCount = 2;
 
-            wave = 0;
+            wave = 1;
 
             // Reset game after 1.5 seconds
             setTimeout(() => {
@@ -150,7 +150,7 @@ function reset(state) {
             if (wave % 3 == 0) { grumpies.push(new slimes(grumpyData)); grumpyCount++; }
 
             // Heal Player
-            player.health += 2.5;
+            player.health += 5 * (1 + wave/20);
 
             // Add score
             player.score += 1.5 + Math.floor(player.health/100 + 0.5) * (1.5 + wave/50);
