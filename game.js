@@ -113,6 +113,12 @@ function reset(state) {
 
             // Reset game after 1.5 seconds
             setTimeout(() => {
+                basics = []
+                basicCount = 3;
+                speedies = []
+                speedyCount = 1;
+                grumpies = []
+                grumpyCount = 2;
                 player.Init(CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
                 start();
             }, 1500);
