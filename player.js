@@ -101,21 +101,26 @@ var player = {
 
         this.ApplyForce(20); 
         speed = this.speed.current/key.length*pxm;
+
+        let up = key[38] || key[87];
+        let down = key[40] || key[83];
+        let left = key[37] || key[65];
+        let right = key[39] || key[68];
         
         // Move Up
-        if ((key[38] || key[87]) && !(key[40] || key[83])) {
+        if ((up) && !(down)) {
             if (checkOutOfBounds(this)) {this.y -= speed;}
-            if ((key[39] || key[68]) && !(key[37] || key[65])) {
+            if ((right) && !(left)) {
                 this.Animate(frame, "run-right");
-            } else if ((key[37] || key[65]) && !(key[39] || key[68])) {
+            } else if ((left) && !(right)) {
                 this.Animate(frame, "run-left");
             } else {
                 this.Animate(frame, "running");
             }
-        } else if ((key[38] || key[87]) && (key[40] || key[83])) {
-            if ((key[39] || key[68]) && !(key[37] || key[65])) {
+        } else if ((up) && (down)) {
+            if ((right) && !(left)) {
                 this.Animate(frame, "run-right");
-            } else if ((key[37] || key[65]) && !(key[39] || key[68])) {
+            } else if ((left) && !(right)) {
                 this.Animate(frame, "run-left");
             } else {
                 this.Animate(frame, "idle");
@@ -123,19 +128,19 @@ var player = {
         }
 
         // Move Down
-        if ((key[40] || key[83]) && !(key[38] || key[87])) {
+        if ((down) && !(up)) {
             if (checkOutOfBounds(this)) {this.y += speed;}
-            if ((key[39] || key[68]) && !(key[37] || key[65])) {
+            if ((right) && !(left)) {
                 this.Animate(frame, "run-right");
-            } else if ((key[37] || key[65]) && !(key[39] || key[68])) {
+            } else if ((left) && !(right)) {
                 this.Animate(frame, "run-left");
             } else {
                 this.Animate(frame, "running");
             }
-        } else if ((key[40] || key[83]) && (key[38] || key[87])) {
-            if ((key[39] || key[68]) && !(key[37] || key[65])) {
+        } else if ((down) && (up)) {
+            if ((right) && !(left)) {
                 this.Animate(frame, "run-right");
-            } else if ((key[37] || key[65]) && !(key[39] || key[68])) {
+            } else if ((left) && !(right)) {
                 this.Animate(frame, "run-left");
             } else {
                 this.Animate(frame, "idle");
@@ -143,18 +148,18 @@ var player = {
         }
 
         // Move Right
-        if ((key[39] || key[68]) && !(key[37] || key[65])) {
+        if ((right) && !(left)) {
             if (checkOutOfBounds(this)) {this.x += speed;}
             this.Animate(frame, "run-right");
-        } else if ((key[39] || key[68]) && (key[37] || key[65]) && !(key[38] || key[87]) && !(key[40] || key[83])) {
+        } else if ((right) && (left) && !(up) && !(down)) {
             this.Animate(frame, "idle")
         }
 
         // Move Left
-        if ((key[37] || key[65]) && !(key[39] || key[68])) {
+        if ((left) && !(right)) {
             if (checkOutOfBounds(this)) {this.x -= speed;}
             this.Animate(frame, "run-left");
-        } else if ((key[37] || key[65]) && (key[39] || key[68]) && !(key[38] || key[87]) && !(key[40] || key[83])) {
+        } else if ((left) && (right) && !(up) && !(down)) {
             this.Animate(frame, "idle")
         }
     },

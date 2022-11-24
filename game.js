@@ -64,6 +64,9 @@ function start() {
     hud.score.Init()
     cnvs.style.background = "grey";
 
+    keyPressed[87] = true;
+    keyPressed[87] = false;
+
     frame = 1;
 
     basicCount = 3;
