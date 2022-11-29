@@ -11,8 +11,9 @@ var ctx = cnvs.getContext("2d")
 document.body.appendChild(cnvs);
 
 let keyPressed = [];
+let mainLoop;
+let FPS = 60;
 let frame = 1;
-let mainLoop = null;
 
 let nextWave = false;
 let wave = 1;
@@ -110,12 +111,12 @@ function start() {
 
     entities.sort(function(a, b){return (a.bottom - 20) - (b.bottom - 20)});
 
-    update();
+    mainLoop = setInterval(update, 1000 / FPS);
 }
 
 function reset(state) {
     if (mainLoop) {
-        cancelAnimationFrame(mainLoop);
+        clearInterval(mainLoop);
     }
 
     switch (state) {
@@ -164,8 +165,6 @@ function reset(state) {
                 player.y = CANVAS_HEIGHT/2;
                 start();
             }, 1500);
-            break;     
-        default:
             break;
     }
 }
@@ -173,8 +172,6 @@ function reset(state) {
 function update() {
     cnvs.width = CANVAS_WIDTH = window.innerWidth;
     cnvs.height = CANVAS_HEIGHT = window.innerHeight;
-
-    mainLoop = requestAnimationFrame(update);
     ctx.clearRect(0, 0, cnvs.width, cnvs.height);
 
     // Render shadows
